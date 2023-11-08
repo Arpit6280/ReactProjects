@@ -1,0 +1,8 @@
+.items{
+    display: flex;
+    margin-left: 25px;
+}
+
+.btn{
+    margin-left: 15px;
+}
