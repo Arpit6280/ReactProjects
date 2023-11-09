@@ -1,0 +1,12 @@
+.form{
+    text-align: right;
+}
+
+.form button{
+    width: 5.5rem;
+    border-radius: 10px;
+    border: 1px solid brown;
+    background-color: brown;
+    padding: 5px 8px;
+    
+}

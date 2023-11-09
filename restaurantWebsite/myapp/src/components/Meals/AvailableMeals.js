@@ -1,6 +1,7 @@
 import React from 'react'
 import ShowMeals from './ShowMeals';
 import Card from '../UI/Card';
+import MealItem from './MealItem/MealItem';
 
 function AvailableMeals() {
     const DUMMY_MEALS = [
@@ -34,7 +35,8 @@ function AvailableMeals() {
         {
             DUMMY_MEALS.map((meal)=> (
                 // key={meal.id}
-               <ShowMeals id={meal.id} name={meal.name} description={meal.description} price={meal.price} />
+                <MealItem id={meal.id} name={meal.name} description={meal.description} price={meal.price}/>
+              
             ))
         }
     </Card>

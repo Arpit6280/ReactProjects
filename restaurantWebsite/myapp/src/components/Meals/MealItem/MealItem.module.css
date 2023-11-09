@@ -1,0 +1,25 @@
+.showMeals{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.showMeals h4{
+    color: black;
+    font-size: 1.2rem;
+}
+
+.description{
+    color: black;
+    font-style: italic;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+}
+
+.price{
+
+    font-weight: bold;
+    color: #ad5502;
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    margin-top: 0.25rem;
+}
