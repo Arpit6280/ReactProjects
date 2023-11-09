@@ -35,3 +35,6 @@
     object-fit: cover;
 }
 
+.icon{
+    cursor: pointer;
+}
