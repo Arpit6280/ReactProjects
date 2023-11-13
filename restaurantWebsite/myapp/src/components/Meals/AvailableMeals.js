@@ -34,7 +34,6 @@ function AvailableMeals() {
     <Card>
         {
             DUMMY_MEALS.map((meal)=> (
-                // key={meal.id}
                 <MealItem key={meal.id} id={meal.id} name={meal.name} description={meal.description} price={meal.price}/>
               
             ))

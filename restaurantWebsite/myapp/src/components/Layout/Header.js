@@ -7,15 +7,18 @@ import CartContext from '../../store/cart-context'
 
 function Header(props) {
   const cartContext=useContext(CartContext);
-  console.log(cartContext);
   const noOfCartItems=cartContext.items.reduce((curNumber,item)=>{
     return curNumber+item.amount
   },0)
   return (
     <React.Fragment>
         <nav className={classes.navbar}>
-            <h2 className='reactMeals'>ReactMeals</h2>
-            <div className={classes.cartIcon}> <h4 className={classes.h4}> <FontAwesomeIcon icon={faCartShopping} onClick={props.onCartOpen} className={classes.icon} /> Your Cart   <span> {noOfCartItems} </span> </h4></div>
+            <h2>ReactMeals</h2>
+            <div className={classes.cartIcon}> <h4 className={classes.h4}>
+            <FontAwesomeIcon icon={faCartShopping} onClick={props.onCartOpen} 
+            className={classes.icon} /> Your Cart   
+            <span> {noOfCartItems} </span> </h4>
+            </div>
         </nav>
         <div >
             <img src={mealImg} alt="" className={classes.mealImg}  />

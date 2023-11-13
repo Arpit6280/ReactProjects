@@ -4,7 +4,7 @@ import classes from  './MealItemForm.module.css'
 
 
 function MealItemForm(props) {
-  const[isFormSubmitted, setIsFormSubmitted]=useState(false)
+  // const[isFormSubmitted, setIsFormSubmitted]=useState(false)
   let enteredAmnt;
   const amountHandler=(enteredAmount)=>{
   enteredAmnt=enteredAmount;
@@ -19,7 +19,7 @@ function MealItemForm(props) {
     if(enteredAmnt.trim().length===0 || enteredAmountNumber<0){
       return;
     }
-   setIsFormSubmitted(true)
+  //  setIsFormSubmitted(true)
    props.onAddCart(enteredAmountNumber)
   }
 
