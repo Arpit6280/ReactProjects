@@ -10,9 +10,7 @@ function Cart(props) {
   const cartItems = <ul className={classes.cart_items}>{cartCtx.items.map((item) =>
     <CartItem name={item.name} 
     price={item.price} 
-    large={item.large} 
-    medium={item.medium}
-    small={item.small}
+    quantity={item.quantity}
     // onRemove={removeCartHandler.bind(null,item.id)} 
     // onAdd={addCartHandler.bind(null,item)}
      />

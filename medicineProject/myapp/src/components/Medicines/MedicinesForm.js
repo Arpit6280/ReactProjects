@@ -1,13 +1,11 @@
-import React, { useState } from 'react'
-import styles from  './ShoesForm.module.css'
+import React,{useState} from 'react'
+import styles from './MedicinesForm.module.css'
 
-function ShoesForm(props) {
+function MedicinesForm(props) {
     const[name,setName]= useState('')
     const[price,setPrice]= useState('')
     const[description,setDescription]= useState('')
-    const[large,setLarge]= useState('')
-    const[medium,setMedium]= useState('')
-    const[small,setSmall]= useState('')
+    const[quantity,setQuantity]= useState('')
 
 
     const namehandler=(e)=>{
@@ -22,60 +20,47 @@ function ShoesForm(props) {
         setDescription(e.target.value)
     }
 
-    const largeHandler=(e)=>{
-        setLarge(e.target.value)
+    const quantityHandler=(e)=>{
+        setQuantity(e.target.value)
     }
 
-    const mediumHandler=(e)=>{
-        setMedium(e.target.value)
-    }
-
-    const smallHandler=(e)=>{
-        setSmall(e.target.value)
-    }
 
 
     const submitHandler =(e)=>{
       e.preventDefault();
-      let shoes={
+      let medicine={
         name:name,
         price:price,
         description:description,
-        large:large,
-        small:small,
-        medium:medium
+       quantity:quantity
       }
-      props.addShoes(shoes)
+      console.log(quantity);
+      console.log(medicine);
+      props.addMedicine(medicine)
       setName('');
       setDescription('')
       setPrice('');
-      setLarge('')
-      setSmall('')
-      setMedium('')
+      setQuantity('')
     }
   return (
     <div>
         <form onSubmit={submitHandler} className={styles.form}>
             <div className={styles.formInput}>
             <div className={styles.form__input}>
-                <label htmlFor="ShoesName">Shoes Name</label>
+                <label htmlFor="ShoesName">Medicine Name</label>
                 <input type="text" onChange={namehandler} value={name} />
             </div>
             <div className={styles.form__input}>
-                <label htmlFor="ShoesPrice">Shoes Price</label>
+                <label htmlFor="ShoesPrice">Medicine Price</label>
                 <input type="text" onChange={priceHandler } value={price} />
             </div>
             <div className={styles.form__input}>
                 <label htmlFor="description">Description</label>
                 <input type="text" onChange={descriptionHandler} value={description} />
             </div>
-            <div className={styles.form__input_size}>
-                <label htmlFor="large">L</label>
-                <input type="text" className={styles.size} onChange={largeHandler} value={large} />
-                <label htmlFor="medium">M</label>
-                <input type="text" className={styles.size} onChange={mediumHandler} value={medium} />
-                <label htmlFor="small">S</label>
-                <input type="text" className={styles.size} onChange={smallHandler}  value={small}/>
+            <div className={styles.form__input}>
+                <label htmlFor="large">Quantity Available</label>
+                <input type="text" className={styles.size} onChange={quantityHandler} value={quantity} />
             </div>
             <div className={styles.form_button__actions}>
             <button>Add Product</button>
@@ -86,4 +71,4 @@ function ShoesForm(props) {
   )
 }
 
-export default ShoesForm
+export default MedicinesForm

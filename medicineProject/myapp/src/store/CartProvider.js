@@ -4,33 +4,18 @@ import CartContext from "./cart-context"
 const CartProvider= props=>{
     const[items,setItems]=useState([])
  
-const addItemToCartHandler=(newItems,size)=>{
-
-    // setItems((prevState)=>{
-    //     return [...prevState,newItems]
-    // })
+const addItemToCartHandler=(newItems)=>{
+    console.log(newItems);
    const existingItemIndex=items.findIndex((item)=> item.name===newItems.name)
    const existingCartItem=items[existingItemIndex];
 let updatedItem;
 let updatedItems;
    if(existingCartItem){
-    if(size==='L'){
    updatedItem={
     ...existingCartItem,
-    large: parseInt( existingCartItem.large) + parseInt(newItems.large)
+    quantity: parseInt( existingCartItem.quantity) + parseInt(newItems.quantity)
    }
-}   else if(size==='M'){
-    updatedItem={
-        ...existingCartItem,
-        medium: parseInt( existingCartItem.medium) + parseInt(newItems.medium)
-       }
-}else if(size==='S'){
-    console.log('S');
-    updatedItem={
-        ...existingCartItem,
-        small: parseInt( existingCartItem.small) + parseInt(newItems.small)
-       }
-}
+
    updatedItems=[...items];
    updatedItems[existingItemIndex]=updatedItem
    }
@@ -63,7 +48,7 @@ const removeItemFromCartHAndler=(id)=>{
 }
 
 const total=items.reduce((curNumber,item)=>{
-    return curNumber+((item.large+item.small+item.medium)*item.price);
+    return curNumber+((item.quantity)*item.price);
   },0)
 
 const cartContext={
