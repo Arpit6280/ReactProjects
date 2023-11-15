@@ -13,7 +13,7 @@ let updatedItems;
    if(existingCartItem){
    updatedItem={
     ...existingCartItem,
-    quantity: parseInt( existingCartItem.quantity) + parseInt(newItems.quantity)
+    quantity: parseInt( existingCartItem.quantity) + 1
    }
 
    updatedItems=[...items];

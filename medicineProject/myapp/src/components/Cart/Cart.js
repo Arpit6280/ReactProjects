@@ -6,13 +6,19 @@ import CartContext from '../../store/cart-context'
 
 function Cart(props) {
   const cartCtx=useContext(CartContext)
+  const removeCartHandler=(id)=>{
+    cartCtx.removeItem(id);
+ }
+ const addCartHandler=(item)=>{
+  cartCtx.addItem(item)
+ }
  
   const cartItems = <ul className={classes.cart_items}>{cartCtx.items.map((item) =>
     <CartItem name={item.name} 
     price={item.price} 
     quantity={item.quantity}
-    // onRemove={removeCartHandler.bind(null,item.id)} 
-    // onAdd={addCartHandler.bind(null,item)}
+    onRemove={removeCartHandler.bind(null,item.id)} 
+    onAdd={addCartHandler.bind(null,item)}
      />
 )} </ul>
   return (

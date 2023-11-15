@@ -3,7 +3,6 @@ import Header from './components/Layout/Header';
 import Cart from './components/Cart/Cart';
 import CartProvider from './store/CartProvider';
 import Medicines from './components/Medicines/Medicines';
-// import ShoesForm from './components/Shoes/ShoesForm';
 
 function App() {
   // useState
