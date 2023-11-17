@@ -1,0 +1,24 @@
+.add_to_cart{
+    display: flex;
+    justify-content: space-between;
+}
+
+.item{
+    margin-bottom: 2rem;
+}
+
+.image{
+    transform-origin: center center;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+    transition: ease-in-out 1s;
+    filter: brightness(100%);
+}
+
+.image:hover{
+    filter: brightness(120%);
+    transform: scale(1.03);
+}
