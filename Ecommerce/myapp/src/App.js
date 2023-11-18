@@ -1,7 +1,6 @@
-import Button from 'react-bootstrap/Button';
-import Header from './Header/Header';
-import Products from './Product/Products';
-import Cart from './Cart/Cart';
+import Header from './components/Header/Header';
+import Products from './components/Product/Products';
+import Cart from './components/Cart/Cart';
 import { useState } from 'react';
 function App() {
   const[isCartVisible,setIsCartVisible]= useState(false)

@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styles from './Header.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faCartShopping } from '@fortawesome/free-solid-svg-icons'
+import CartContext from '../Store/cart-context';
 
 
 function Header(props) {
+    const cartCtx=useContext(CartContext)
     return (
         <div >
         <Container fluid>
@@ -23,7 +25,7 @@ function Header(props) {
                 <Col>
               
                         <span className={styles.span}>   <FontAwesomeIcon icon={faCartShopping} 
-            className={styles.icon} onClick={props.cartOpenHandler} />  0</span>
+            className={styles.icon} onClick={props.cartOpenHandler} /> {cartCtx.totalItems} </span>
 
                 </Col>
             </Row>
