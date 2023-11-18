@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import classes from  './MovieForm.module.css'
 
-function MovieForm() {
+function MovieForm(props) {
     const [title,setTitle]=useState('')
     const [openingText, setOpeningText]=useState('')
     const [date,setDate]=useState('');
@@ -23,7 +23,7 @@ function MovieForm() {
             openingText: openingText,
           releaseDate: date
         }
-        console.log(NewMovieObj);
+        props.onAddMovie(NewMovieObj)
      }
   return (
     <form onSubmit={submitHandler}>
@@ -34,13 +34,13 @@ function MovieForm() {
       </div>
       <div className={classes.control_input}>
         <label htmlFor="openingText">Opening text</label>
-        <textarea name="" id="" cols="30" rows="10" onChange={openTextHandler} value={openingText}></textarea>
+        <textarea  rows="10" onChange={openTextHandler} value={openingText}></textarea>
       </div>
       <div className={classes.control_input}>
         <label htmlFor="ReleaseDate">Release Date</label>
         <input type="text" onChange={onDateHandler} value={date} />
       </div>
-     <button>submit</button>
+     <button>Add Movie</button>
     </form>
 
 
