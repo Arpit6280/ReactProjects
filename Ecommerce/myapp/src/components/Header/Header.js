@@ -13,12 +13,12 @@ function Header(props) {
     const cartCtx=useContext(CartContext)
     return (
         <div >
-        <Container fluid>
+        <Container fluid className={styles.contain}>
             <Row className='bg-dark p-4 justify-content-between'>
                 <Col>
                     <Row className={styles.navRow}>
                         <Col> <NavLink to='/' className={({isActive})=>(isActive? styles.active:undefined)}>HOME </NavLink> </Col>
-                        <Col>STORE</Col>
+                        <Col> <NavLink to='/products' className={({isActive})=>(isActive? styles.active:undefined)}> STORE </NavLink></Col>
                         <Col><NavLink to='/about' className={({isActive})=>(isActive? styles.active:undefined)}> ABOUT </NavLink></Col>
 
                     </Row>
@@ -31,7 +31,7 @@ function Header(props) {
                 </Col>
             </Row>
             <div className={styles.header_top}>
-                <p className='text-center display-1 fw-bold'>THE GENERIC</p>
+                <p className='text-center display-1 fw-bold text-light'>THE GENERIC</p>
             </div>
         </Container>
         </div>

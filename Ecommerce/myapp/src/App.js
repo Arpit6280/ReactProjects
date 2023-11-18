@@ -5,6 +5,7 @@ import { Fragment, useState } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import RootPage from './components/Pages/RootPage';
 import AboutPage from './components/Pages/AboutPage';
+import HomePage from './components/Pages/HomePage';
 
 function App() {
   const[isCartVisible,setIsCartVisible]= useState(false)
@@ -19,7 +20,8 @@ function App() {
       path:'/',
       element:<RootPage cartOpenHandler={cartOpenHandler} />,
       children:[
-        {path:'/',element:<Products/>},
+        {path:'/',element:<HomePage/>},
+        {path:'/products',element:<Products/>},  
         {path:'/about',element:<AboutPage />}
       ]
     }
