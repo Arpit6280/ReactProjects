@@ -1,0 +1,33 @@
+.section {
+    margin: 1rem auto;
+    width: 90%;
+    max-width: 40rem;
+    text-align: center;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid rgb(8, 164, 192);
+  }
+
+
+  .control_input label{
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+   font-weight: bold;
+   float: left;
+}
+
+.control_input input{
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    border-radius: 10px;
+}
+
+.btn{
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px;
+    background-color: rgb(17, 156, 187);
+    border: 2px solid rgb(17, 156, 187);
+}

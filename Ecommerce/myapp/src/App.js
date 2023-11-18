@@ -1,4 +1,3 @@
-import Header from './components/Header/Header';
 import Products from './components/Product/Products';
 import Cart from './components/Cart/Cart';
 import { Fragment, useState } from 'react';
@@ -6,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import RootPage from './components/Pages/RootPage';
 import AboutPage from './components/Pages/AboutPage';
 import HomePage from './components/Pages/HomePage';
+import ContactPage from './components/Pages/ContactPage';
 
 function App() {
   const[isCartVisible,setIsCartVisible]= useState(false)
@@ -22,7 +22,8 @@ function App() {
       children:[
         {path:'/',element:<HomePage/>},
         {path:'/products',element:<Products/>},  
-        {path:'/about',element:<AboutPage />}
+        {path:'/about',element:<AboutPage />},
+        {path:'/contact',element:<ContactPage />}
       ]
     }
   ])
@@ -31,11 +32,6 @@ function App() {
     <RouterProvider router={router} />
     {isCartVisible && <Cart  cartCloseHandler={cartCloseHandler}/>}
     </Fragment>
-    // <div className="App">
-    //  {isCartVisible && <Cart  cartCloseHandler={cartCloseHandler}/>} 
-    //   <Header cartOpenHandler={cartOpenHandler}/>
-    //   <Products />
-    // </div>
   );
 }
 
