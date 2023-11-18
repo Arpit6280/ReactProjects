@@ -6,6 +6,7 @@ import styles from './Header.module.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import CartContext from '../Store/cart-context';
+import { NavLink } from 'react-router-dom';
 
 
 function Header(props) {
@@ -16,9 +17,9 @@ function Header(props) {
             <Row className='bg-dark p-4 justify-content-between'>
                 <Col>
                     <Row className={styles.navRow}>
-                        <Col >HOME</Col>
+                        <Col> <NavLink to='/' className={({isActive})=>(isActive? styles.active:undefined)}>HOME </NavLink> </Col>
                         <Col>STORE</Col>
-                        <Col>ABOUT</Col>
+                        <Col><NavLink to='/about' className={({isActive})=>(isActive? styles.active:undefined)}> ABOUT </NavLink></Col>
 
                     </Row>
                 </Col>

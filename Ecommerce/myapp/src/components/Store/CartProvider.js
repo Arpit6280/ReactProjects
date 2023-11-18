@@ -3,12 +3,17 @@ import CartContext from "./cart-context"
 
 const CartProvider=(props)=>{
    const [items,setItems]= useState([]);
+
+
    const addToCartHandler=(newItem)=>{
-    const existingItemIndex= items.findIndex((item)=> item.name===newItem.name)
+    console.log(newItem.name);
+    const existingItemIndex= items.findIndex((item)=> item.title===newItem.title)
     const existingCartItem=items[existingItemIndex];
+    console.log(existingCartItem,existingItemIndex);
     let updatedItem;
     let updatedItems;
        if(existingCartItem){
+        console.log('old');
        updatedItem={
         ...existingCartItem,
         quantity: parseInt( existingCartItem.quantity) + 1
@@ -18,6 +23,7 @@ const CartProvider=(props)=>{
        updatedItems[existingItemIndex]=updatedItem
        }
        else{
+        console.log('new');
         updatedItem={...newItem}
         updatedItems=[...items,updatedItem]
        }

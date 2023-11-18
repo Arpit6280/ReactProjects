@@ -18,3 +18,13 @@
     height: 10rem;
     padding: 0;
 }
+
+a{
+    color: #fff;
+    text-decoration: none;
+}
+
+.active{
+    background-color: #686565;
+    padding: 2px 4px;
+}
