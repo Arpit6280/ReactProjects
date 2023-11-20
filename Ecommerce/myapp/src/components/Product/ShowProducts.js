@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col'
 import styles from './ShowProduct.module.css'
 import CartContext from '../Store/cart-context';
+import { Link } from 'react-router-dom';
 
 function ShowProducts(props) {
   const cartCtx=useContext(CartContext)
@@ -17,9 +18,12 @@ function ShowProducts(props) {
     cartCtx.addToCart(item);
   }
   return (
+   
     <Col xs={12} sm={6} lg={3} className={styles.item}>
     <Card>
+    <Link to={`/products/${props.title}`}>
     <Card.Img variant="top" src={props.image} className={styles.image} />
+    </Link>
     <Card.Body>
       <Card.Title>{props.title} </Card.Title>
       <div className={styles.add_to_cart}>
@@ -31,6 +35,7 @@ function ShowProducts(props) {
     </Card.Body>
   </Card>
   </Col>
+  // </Link>
   )
 }
 
