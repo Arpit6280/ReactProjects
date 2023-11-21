@@ -1,12 +1,15 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useContext } from 'react';
 
 import classes from './AuthForm.module.css';
+import AuthContext from '../../store/auth-context';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [isloading, setisLoading] = useState(false);
   const emailInputRef = useRef();
   const passwordInputRed = useRef();
+
+  let authCtx=useContext(AuthContext);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -18,7 +21,6 @@ const AuthForm = () => {
     setisLoading(true)
     const enteredEmail = emailInputRef.current.value;
     const enteredPassword = passwordInputRed.current.value
-    console.log('kk');;
     let url
     if (isLogin) {
        url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB_o7vD1dv2xerksf4mLLdbKjlKU8zRKQw'
@@ -38,7 +40,8 @@ const AuthForm = () => {
     });
     if (response.ok) {
             let data= await response.json();
-            console.log(data);
+           authCtx.login(data.idToken)
+            console.log(data.idToken);
     } else {
       response.json().then((data) => {
         //show an error modal
@@ -49,7 +52,6 @@ const AuthForm = () => {
     setisLoading(false)
   }
 
-  console.log('ll');
 
   return (
     <section className={classes.auth}>
@@ -69,7 +71,7 @@ const AuthForm = () => {
           />
         </div>
         <div className={classes.actions}>
-       {!isloading?<button>
+       {!isloading?<button >
          {isLogin ? 'Login' : 'Create Account'} 
           
           </button>: <p className={classes.p}> {isloading ? 'Sending Request...' : ''}</p> }
