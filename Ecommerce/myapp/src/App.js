@@ -14,6 +14,7 @@ import Header from "./components/Header/Header";
 import ProductDetails from "./components/Product/ProductDetails";
 import AuthForm from "./components/Auth/AuthForm";
 import AuthContext from "./components/Store/auth-context";
+import Footer from "./components/Header/Footer";
 
 function App() {
   const [isCartVisible, setIsCartVisible] = useState(false);
@@ -44,7 +45,9 @@ function App() {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/products/:productId" element={<ProductDetails />} />
+          
         </Routes>
+       <Footer/>
       </BrowserRouter>
       {isCartVisible && <Cart cartCloseHandler={cartCloseHandler} />}
     </Fragment>

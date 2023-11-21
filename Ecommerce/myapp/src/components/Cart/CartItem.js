@@ -1,11 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './CartItem.module.css'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faTrash, } from '@fortawesome/free-solid-svg-icons'
+import CartContext from '../Store/cart-context';
 
 function CartItem(props) {
+  const cartCtx=useContext(CartContext)
+  const deleteProductHandler=()=>{
+   
+     cartCtx.removeFromCart(props.item)
+  }
   return (
     <div>
     
@@ -21,11 +27,11 @@ function CartItem(props) {
         <Row>
             <Col xs={4}><p> {props.quantity}</p></Col>
             <Col xs={2}> <FontAwesomeIcon icon={faTrash} 
-            className={styles.icon} /></Col>
+            className={styles.icon} onClick={deleteProductHandler} /></Col>
         </Row>
          </Col>
         </Row>
- 
+     <hr />
     </div>
   )
 }

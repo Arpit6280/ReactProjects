@@ -11,11 +11,11 @@ import AuthContext, { AuthContextProvider } from './components/Store/auth-contex
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <>
     <AuthContextProvider >
     <CartProvider> <App /> </CartProvider> 
     </AuthContextProvider>
-  </React.StrictMode>
+  </>
 );
 
 // If you want to start measuring performance in your app, pass a function

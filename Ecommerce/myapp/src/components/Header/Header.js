@@ -14,11 +14,17 @@ import { useNavigate } from 'react-router-dom';
 function Header(props) {
     const cartCtx = useContext(CartContext)
     const authCtx=useContext(AuthContext)
+    let isLoggedIn=authCtx.isLoggedIn;
     const navigate=useNavigate()
     const logoutHandler=()=>{
+        // cartCtx.items=[];
+        // cartCtx.totalItems=0;
+        console.log(cartCtx.items);
         authCtx.logout();
         navigate('/auth',{replace:true})
     }
+    let totalItem= cartCtx.totalItems!=='NAN'?cartCtx.totalItems:0
+    console.log(totalItem);
     return (
         <div >
             <Container fluid className={styles.contain}>
@@ -33,10 +39,10 @@ function Header(props) {
                             {authCtx.isLoggedIn && <Col><Link onClick={logoutHandler}> Logout</Link></Col>}  
                         </Row>
                     </Col>
-                    <Col sm={2}>
+               {isLoggedIn?<Col sm={2}>
                         <span className={styles.span}>   <FontAwesomeIcon icon={faCartShopping}
-                            className={styles.icon} onClick={props.cartOpenHandler} /> {cartCtx.totalItems} </span>
-                    </Col>
+                            className={styles.icon} onClick={props.cartOpenHandler} /> { cartCtx.totalItems!=='NAN'?cartCtx.totalItems:0} </span>
+                    </Col>:''}     
                 </Row>
                 <div className={styles.header_top}>
                     <p className='text-center display-1 fw-bold text-light'>THE GENERIC</p>

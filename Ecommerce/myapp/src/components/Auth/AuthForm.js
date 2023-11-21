@@ -44,7 +44,8 @@ function AuthForm() {
       if (response.ok) {
               let data= await response.json();
               console.log(data);
-              authCtx.login(data.idToken)
+              console.log(data.email);
+              authCtx.login(data.idToken,data.email)
             navigate('/products',{replace:true})
       } else {
         response.json().then((data) => {

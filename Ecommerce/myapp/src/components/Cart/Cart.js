@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Modal from  '../UI/Modal'
 import CartItem from './CartItem'
 import styles from './Cart.module.css'
@@ -6,11 +6,18 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CartContext from '../Store/cart-context';
 
-function Cart(props) {
 
+
+function Cart(props) {
     const cartCtx = useContext(CartContext)
+    const handlePurchase=()=>{
+        alert('Thank You For Purchasing')
+        cartCtx.clearCart()
+    }
         const cartItems= <ul className={styles.cart_items}> {cartCtx.items.map((item)=>(
-            <CartItem title={item.title}
+            <CartItem 
+            item={item}
+            title={item.title}
              price={item.price}  
              image={item.imageUrl} 
              quantity={item.quantity} />
@@ -27,10 +34,13 @@ function Cart(props) {
             <Col xs={3} className='fw-bold'>QUANTITY</Col>
         </Row>
            {cartItems}
+           <div className={styles.total}>${cartCtx.totalAmount}</div>
            <div className={styles.actions}>
+           
                 <button className={styles.button_alt} onClick={props.cartCloseHandler}>Close</button>
-                <button className={styles.button}>Order</button>
+                <button className={styles.button} >Order</button>
             </div>
+            
       </Modal>
    
   )
