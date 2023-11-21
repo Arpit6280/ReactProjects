@@ -8,6 +8,7 @@ import HomePage from './components/Pages/HomePage';
 import ContactPage from './components/Pages/ContactPage';
 import Header from './components/Header/Header';
 import ProductDetails from './components/Product/ProductDetails';
+import AuthForm from './components/Auth/AuthForm';
 
 function App() {
   const[isCartVisible,setIsCartVisible]= useState(false)
@@ -36,6 +37,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<HomePage/>}/> 
+        <Route path='/auth' element={<AuthForm/>} />
         <Route path='/products' element={<Products/>}/> 
         <Route path='/about' element={<AboutPage/>} />
         <Route path='/contact' element={<ContactPage/>}/>

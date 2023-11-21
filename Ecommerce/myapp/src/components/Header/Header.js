@@ -14,13 +14,14 @@ function Header(props) {
     return (
         <div >
             <Container fluid className={styles.contain}>
-                <Row className='bg-dark p-4 justify-content-between'>
+                <Row className='bg-dark p-4 '>
                     <Col>
                         <Row className={styles.navRow}>
                             <Col> <NavLink to='/' className={({ isActive }) => (isActive ? styles.active : undefined)}>HOME </NavLink> </Col>
                             <Col> <NavLink to='/products' className={({ isActive }) => (isActive ? styles.active : undefined)}> STORE </NavLink></Col>
                             <Col><NavLink to='/about' className={({ isActive }) => (isActive ? styles.active : undefined)}> ABOUT </NavLink></Col>
                             <Col><NavLink to='/contact' className={({ isActive }) => (isActive ? styles.active : undefined)}> CONTACT US </NavLink></Col>
+                            <Col><NavLink to='/auth' className={({ isActive }) => (isActive ? styles.active : undefined)}> LogIn/SignUp </NavLink></Col>
                         </Row>
                     </Col>
                     <Col>
