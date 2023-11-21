@@ -10,8 +10,6 @@ import AuthContext from './store/auth-context';
 function App() {
   const authCtx=useContext(AuthContext)
   const isLoggedIn=authCtx.isLoggedIn;
-  let item=localStorage.getItem('11')
- if(!!item) {authCtx.login(item)}
 
   return (
     <Layout>
