@@ -7,7 +7,7 @@ import AuthContext from '../Store/auth-context';
 function AuthForm() {
     const navigate=useNavigate()
     
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     const [isloading, setisLoading] = useState(false);
     const emailInputRef = useRef();
     const passwordInputRed = useRef();
