@@ -4,56 +4,51 @@ import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(false);
-  const [isloading, setisLoading]=useState(false);
-  const emailInputRef= useRef();
-  const passwordInputRed=useRef();
+  const [isloading, setisLoading] = useState(false);
+  const emailInputRef = useRef();
+  const passwordInputRed = useRef();
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
 
 
-  const submitHandler= async(e)=>{
+  const submitHandler = async (e) => {
     e.preventDefault();
     setisLoading(true)
-    const enteredEmail=emailInputRef.current.value;
-    const enteredPassword=passwordInputRed.current.value
-    console.log('kk');
-    if(isLogin){
-
-    }else{
-      const response= await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyB_o7vD1dv2xerksf4mLLdbKjlKU8zRKQw',{
-        method:'POST',
-        body: JSON.stringify({
-          email:enteredEmail,
-          password:enteredPassword,
-          returnSecureToken: true
-        }),
-        headers:{
-          'Content-TYpe':'application/json'
-        }
-      });
-      if(response.ok){
-
-      }else{
-        const data= await response.json();
-        //show an error modal
-        console.log(data);
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRed.current.value
+    console.log('kk');;
+    let url
+    if (isLogin) {
+       url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyB_o7vD1dv2xerksf4mLLdbKjlKU8zRKQw'
+    } else {
+       url='https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyB_o7vD1dv2xerksf4mLLdbKjlKU8zRKQw'
+ }
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: enteredEmail,
+        password: enteredPassword,
+        returnSecureToken: true
+      }),
+      headers: {
+        'Content-Type': 'application/json'
       }
-      
+    });
+    if (response.ok) {
+            let data= await response.json();
+            console.log(data);
+    } else {
+      response.json().then((data) => {
+        //show an error modal
+        alert(data.error.message)
+      })
+
     }
-   
     setisLoading(false)
-
-
   }
 
-  // const authHandler=async()=>{
-  //   console.log('hi');
-  //   const response= await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=[API_KEY]');
-  //   const data= await response.json();
-  //   console.log(data);
-  // }
   console.log('ll');
 
   return (
@@ -74,9 +69,11 @@ const AuthForm = () => {
           />
         </div>
         <div className={classes.actions}>
-          <button>
-            {isloading?'Loading...':'Create Account'}
-          </button>
+       {!isloading?<button>
+         {isLogin ? 'Login' : 'Create Account'} 
+          
+          </button>: <p className={classes.p}> {isloading ? 'Sending Request...' : ''}</p> }
+         
         </div>
         <div className={classes.actions}>
           <button
