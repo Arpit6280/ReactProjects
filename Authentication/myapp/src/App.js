@@ -1,22 +1,33 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
 import AuthPage from './pages/AuthPage';
 import HomePage from './pages/HomePage';
+import { useContext } from 'react';
+import AuthContext from './store/auth-context';
 
 function App() {
+  const authCtx=useContext(AuthContext)
+  const isLoggedIn=authCtx.isLoggedIn;
+  let item=localStorage.getItem('11')
+ if(!!item) {authCtx.login(item)}
+
   return (
     <Layout>
       <Switch>
         <Route path='/' exact>
           <HomePage />
         </Route>
-        <Route path='/auth'>
+      {!isLoggedIn && ( <Route path='/auth'>
           <AuthPage />
-        </Route>
+        </Route>)} 
         <Route path='/profile'>
-          <UserProfile />
+          {isLoggedIn && <UserProfile/>}
+          {!isLoggedIn && <Redirect to='/auth'/> }
+        </Route>
+        <Route path='*'>
+           <Redirect to='/'/>
         </Route>
       </Switch>
     </Layout>

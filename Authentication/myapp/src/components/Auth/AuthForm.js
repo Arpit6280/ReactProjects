@@ -42,6 +42,7 @@ const AuthForm = () => {
     if (response.ok) {
             let data= await response.json();
            authCtx.login(data.idToken)
+           localStorage.setItem("11", data.idToken);
             history.replace('/')
     } else {
       response.json().then((data) => {
