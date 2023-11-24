@@ -5,25 +5,24 @@ import axios from 'axios'
 
 function Tshirts() {
     const [addTshirt, setAddTshirt] = useState([])
+    async function fetchData()
+    {        
+        try{
+        const response = await  axios.get(`https://crudcrud.com/api/c0afb57d68c3475498bde6179978dba7/products`)
+        console.log(response);
+        const data =response.data;
+        setAddTshirt(data)
+        console.log(data);
+    }catch(e){
+        console.log('error',e);
+    } 
+}
     useEffect(()=>{
-        async function fetchData()
-        {        
-            try{
-            const response = await  axios.get(`https://crudcrud.com/api/db984f28786c4af1926b649dc088b657/products`)
-            console.log(response);
-            const data =response.data;
-            setAddTshirt(data)
-            console.log(data);
-        }catch(e){
-            console.log('error',e);
-        } 
-    }
     fetchData();
-    console.log('j');
     },[])
     const addTshirtHandler =async (Tshirt) => {
         try{
-    const response = await fetch(`https://crudcrud.com/api/db984f28786c4af1926b649dc088b657/products`,{
+    const response = await fetch(`https://crudcrud.com/api/c0afb57d68c3475498bde6179978dba7/products`,{
         method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -37,32 +36,40 @@ function Tshirts() {
           return [...prevState, Tshirt]
        })
     }
-    const updateTshirtHandler = (tshirt,size) => {
+    const updateTshirtHandler = async (tshirt,size) => {
+        const updatedItemsArray=[...addTshirt]
        const existingItemIndex=addTshirt.findIndex((item)=> item.name===tshirt.name)
-       const existingCartItem=addTshirt[existingItemIndex];
+       console.log(existingItemIndex);
+       if(existingItemIndex!==-1){
        let updatedItem;
-       let updatedItems;
        if(size==='L'){
-          updatedItem={
-           ...existingCartItem,
-          large: parseInt(existingCartItem.large) -1
-          }
+        updatedItemsArray[existingItemIndex].large=Number(updatedItemsArray[existingItemIndex].large)-1
+        
        }else if(size==='M'){
-          updatedItem={
-             ...existingCartItem,
-            medium: parseInt(existingCartItem.medium) -1
-            }
+        updatedItemsArray[existingItemIndex].medium=Number(updatedItemsArray[existingItemIndex].medium)-1
+        
        }else if(size==='S'){
-          updatedItem={
-             ...existingCartItem,
-            small: parseInt(existingCartItem.small) -1
-            }
+        updatedItemsArray[existingItemIndex].small=Number(updatedItemsArray[existingItemIndex].small)-1
+        
        }
-       updatedItems=[...addTshirt];
-       updatedItems[existingItemIndex]=updatedItem
-       setAddTshirt(updatedItems);
-       console.log(tshirt);
+     const shirtIdToUpdate=  updatedItemsArray[existingItemIndex]._id
+     updatedItem={
+        name:tshirt.name,
+        price:tshirt.price,
+        description:tshirt.description,
+        large:updatedItemsArray[existingItemIndex].large,
+                small:updatedItemsArray[existingItemIndex].small,
+                medium:updatedItemsArray[existingItemIndex].medium
+     }
+     console.log(updatedItem);
+     try{
+     await axios.put(`https://crudcrud.com/api/c0afb57d68c3475498bde6179978dba7/products/${shirtIdToUpdate}`,updatedItem)
+     fetchData();
+     }catch(e){
+        console.log('error',e);
+     }
     }
+}
     return (
        <React.Fragment>
           <TshirtForm addTshirt={addTshirtHandler} />

@@ -19,29 +19,15 @@ let updatedItems;
         updatedItemsArray[existingItemIndex].large+=Number(
             newItems.large
         )
-        // updatedItem={
-        //  ...existingCartItem,
-        //  large: parseInt( existingCartItem.large) + parseInt(newItems.large)
-        // }
      } 
      else if(size==='M'){
         updatedItemsArray[existingItemIndex].medium+=Number(
             newItems.medium
         )
-        // updatedItem={
-        //     ...existingCartItem,
-        //     medium: parseInt( existingCartItem.medium) + parseInt(newItems.medium)
-        //    }
     }else if(size==='S'){
         updatedItemsArray[existingItemIndex].small+=Number(
             newItems.small
         )
-        console.log('S');
-        // updatedItem={
-        //     ...existingCartItem,
-        //     small: parseInt( existingCartItem.small) + parseInt(newItems.small)
-        //    }
-    }
     try{
         const itemIdToUpdate=updatedItemsArray[existingItemIndex]._id;
         const updatedItem={
@@ -53,27 +39,29 @@ let updatedItems;
                 medium:updatedItemsArray[existingItemIndex].medium
               
         }
-        await axios.put(`https://crudcrud.com/api/db984f28786c4af1926b649dc088b657/carts/${itemIdToUpdate}`,
+        await axios.put(`https://crudcrud.com/api/c0afb57d68c3475498bde6179978dba7/carts/${itemIdToUpdate}`,
         updatedItem)
         fetchData();
     }catch(e){
         console.log('Eroor',e);
     }
-  }else{
-    const response= await axios.post(`https://crudcrud.com/api/db984f28786c4af1926b649dc088b657/carts/`,newItems)
+  }
+}else{
+    const response= await axios.post(`https://crudcrud.com/api/c0afb57d68c3475498bde6179978dba7/carts/`,newItems)
     // if (!response.ok) {
     //     throw new Error("Failed to add product to cart.");
     //   }
       fetchData();  
 }
-}catch(e){
+}
+catch(e){
     console.log(e);
 }
-   
+
 }
 
 async function fetchData(){
-    const response= await axios.get('https://crudcrud.com/api/db984f28786c4af1926b649dc088b657/carts')
+    const response= await axios.get('https://crudcrud.com/api/c0afb57d68c3475498bde6179978dba7/carts')
     const data= await response.data;
     console.log(data);
     setItems(data)
