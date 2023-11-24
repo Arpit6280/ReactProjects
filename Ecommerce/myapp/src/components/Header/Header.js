@@ -35,8 +35,8 @@ function Header(props) {
                             <Col> <NavLink to='/products' className={({ isActive }) => (isActive ? styles.active : undefined)}> STORE </NavLink></Col>
                             <Col><NavLink to='/about' className={({ isActive }) => (isActive ? styles.active : undefined)}> ABOUT </NavLink></Col>
                             <Col><NavLink to='/contact' className={({ isActive }) => (isActive ? styles.active : undefined)}> CONTACT US </NavLink></Col>
-                            {!authCtx.isLoggedIn &&  <Col><NavLink to='/auth' className={({ isActive }) => (isActive ? styles.active : undefined)}> LogIn/SignUp </NavLink></Col>}   
-                            {authCtx.isLoggedIn && <Col><Link onClick={logoutHandler}> Logout</Link></Col>}  
+                            {!authCtx.isLoggedIn &&  <Col><NavLink to='/auth' className={({ isActive }) => (isActive ? styles.active : undefined)}> LOGIN </NavLink></Col>}   
+                            {authCtx.isLoggedIn && <Col><Link onClick={logoutHandler}> LOGOUT</Link></Col>}  
                         </Row>
                     </Col>
                {isLoggedIn?<Col sm={2}>
